@@ -47,5 +47,8 @@ class ParkingSpaceTest {
     void testToString() {
         assertEquals("location:" + "6115 Student Union Boulevard V6T 1Z1, UBC"
                 + ", " + 1.0 + "$/hour" + "," + "available",testParkingSpace.toString());
+        testParkingSpace.updateAvailability();
+        assertEquals("location:" + "6115 Student Union Boulevard V6T 1Z1, UBC"
+                + ", " + 1.0 + "$/hour" + "," + "unavailable",testParkingSpace.toString());
     }
 }
