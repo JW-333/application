@@ -17,7 +17,7 @@ public class ParkingApp {
     private ListOfParkingSpaces listOfParkingSpaces;
     private Scanner input;
 
-    // EFFECTS: runs the teller application
+    // EFFECTS: runs the find parking space application
     public ParkingApp() {
         run();
     }
@@ -144,22 +144,43 @@ public class ParkingApp {
         System.out.println("change charge");
         System.out.println("change availability");
         if (input.next().equals("change location")) {
-            System.out.println("enter new location");
-            listOfParkingSpaces.changeLocationOfIndex(input.next(), index);
-            System.out.println(listOfParkingSpaces.getParkingSpaceOfIndex(index).toString());
+            changeLocation(index);
         } else if (input.next().equals("change charge")) {
-            System.out.println("enter new charge");
-            if (input.nextInt() >= 0) {
-                listOfParkingSpaces.changeChargeOfIndex(input.nextInt(), index);
-                System.out.println(listOfParkingSpaces.getParkingSpaceOfIndex(index).toString());
-            } else {
-                System.out.println("amount not valid");
-            }
+            changeCharge(index);
         } else if (input.next().equals("change availability")) {
-            listOfParkingSpaces.changeAvailabilityOfIndex(index);
-            System.out.println(listOfParkingSpaces.getParkingSpaceOfIndex(index).toString());
-        } else System.out.println("selection not valid");
+            changeAvailability(index);
+        } else {
+            System.out.println("selection not valid");
+        }
     }
+
+    // MODIFIES: this
+    // EFFECTS: change the location of a parking space
+    private void changeLocation(int num) {
+        System.out.println("enter new location");
+        listOfParkingSpaces.changeLocationOfIndex(input.next(), num);
+        System.out.println(listOfParkingSpaces.getParkingSpaceOfIndex(num).toString());
+    }
+
+    // MODIFIES: this
+    // EFFECTS: change the charge of a parking space
+    private void changeCharge(int num) {
+        System.out.println("enter new charge");
+        if (input.nextInt() >= 0) {
+            listOfParkingSpaces.changeChargeOfIndex(input.nextInt(), num);
+            System.out.println(listOfParkingSpaces.getParkingSpaceOfIndex(num).toString());
+        } else {
+            System.out.println("amount not valid");
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: change the location of a parking space
+    private void changeAvailability(int num) {
+        listOfParkingSpaces.changeAvailabilityOfIndex(num);
+        System.out.println(listOfParkingSpaces.getParkingSpaceOfIndex(num).toString());
+    }
+
 
 }
 

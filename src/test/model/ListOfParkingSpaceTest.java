@@ -150,10 +150,10 @@ public class ListOfParkingSpaceTest {
         testListOfParkingSpace.addParkingSpace(testParkingSpace);
         testParkingSpace = new ParkingSpace("2250 Health Sciences Mall V6T 1Z3, UBC", 2);
         testListOfParkingSpace.addParkingSpace(testParkingSpace);
-        assertEquals("location:" + "6115 Student Union Boulevard V6T 1Z1, UBC"+ ", " + 1.0 + "$/hour" + "," +
+        assertEquals("1. " + "location:" + "6115 Student Union Boulevard V6T 1Z1, UBC"+ ", " + 1.0 + "$/hour" + ", " +
                 "available", testListOfParkingSpace.displayList().get(0));
         assertEquals(2, testListOfParkingSpace.displayList().size());
-        assertEquals("location:" + "2250 Health Sciences Mall V6T 1Z3, UBC" +  ", " + 2.0 + "$/hour" + ", " +
+        assertEquals("2. " + "location:" + "2250 Health Sciences Mall V6T 1Z3, UBC" +  ", " + 2.0 + "$/hour" + ", " +
                 "available", testListOfParkingSpace.displayList().get(1));
     }
 }

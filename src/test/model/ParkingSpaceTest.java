@@ -1,5 +1,7 @@
 package model;
+
 import static org.junit.jupiter.api.Assertions.*;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -25,6 +27,12 @@ class ParkingSpaceTest {
     }
 
     @Test
+    void testGetId() {
+        assertEquals(1, testParkingSpace.getId());
+        assertTrue(testParkingSpace.getId() > 0);
+    }
+
+    @Test
     void testUpdateLocation() {
         testParkingSpace.updateLocation("2250 Health Sciences Mall V6T 1Z3, UBC");
         assertEquals("2250 Health Sciences Mall V6T 1Z3, UBC",
@@ -46,9 +54,9 @@ class ParkingSpaceTest {
     @Test
     void testToString() {
         assertEquals("location:" + "6115 Student Union Boulevard V6T 1Z1, UBC"
-                + ", " + 1.0 + "$/hour" + ", " + "available",testParkingSpace.toString());
+                + ", " + 1.0 + "$/hour" + ", " + "available", testParkingSpace.toString());
         testParkingSpace.updateAvailability();
         assertEquals("location:" + "6115 Student Union Boulevard V6T 1Z1, UBC"
-                + ", " + 1.0 + "$/hour" + ", " + "unavailable",testParkingSpace.toString());
+                + ", " + 1.0 + "$/hour" + ", " + "unavailable", testParkingSpace.toString());
     }
 }
