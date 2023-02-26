@@ -16,7 +16,7 @@ may be useful to a lot of drivers.
 
 **User Story**:
 - *As a user, I want to be able to view the list of parking spaces in this city.*
-- *As a user, I want to be able to add a new available parking space to the list of parking spaces.*
+- *As a user, I want to be able to add a new parking space to the list of parking spaces.*
 - *As a user, I want to be able to search for available parking space near me.*
 - *As a user, I want to be able to update the information about a parking space in the list because the
    previous information is not accurate.*

@@ -153,8 +153,9 @@ public class ListOfParkingSpaceTest {
         assertEquals("1. " + "location:" + "6115 Student Union Boulevard V6T 1Z1, UBC"+ ", " + 1.0 + "$/hour" + ", " +
                 "available", testListOfParkingSpace.displayList().get(0));
         assertEquals(2, testListOfParkingSpace.displayList().size());
+        testListOfParkingSpace.changeAvailabilityOfIndex(2);
         assertEquals("2. " + "location:" + "2250 Health Sciences Mall V6T 1Z3, UBC" +  ", " + 2.0 + "$/hour" + ", " +
-                "available", testListOfParkingSpace.displayList().get(1));
+                "unavailable", testListOfParkingSpace.displayList().get(1));
     }
 }
 

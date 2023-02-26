@@ -58,5 +58,10 @@ class ParkingSpaceTest {
         testParkingSpace.updateAvailability();
         assertEquals("location:" + "6115 Student Union Boulevard V6T 1Z1, UBC"
                 + ", " + 1.0 + "$/hour" + ", " + "unavailable", testParkingSpace.toString());
+        testParkingSpace = new ParkingSpace(
+                "2250 Health Sciences Mall V6T 1Z3, UBC", 5);
+        testParkingSpace.updateAvailability();
+        assertEquals("location:" + "2250 Health Sciences Mall V6T 1Z3, UBC"
+                + ", " + 5.0 + "$/hour" + ", " + "unavailable", testParkingSpace.toString());
     }
 }

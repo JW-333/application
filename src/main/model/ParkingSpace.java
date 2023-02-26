@@ -1,6 +1,6 @@
 package model;
 
-// Represents a parking space with a location, charge/hour (in dollars), and availability
+// Represents a parking space with a location, charge/hour (in dollars), availability, and ID
 public class ParkingSpace {
     private String location;                 // location of parking
     private static int nextId = 1;           // tracks id of next parking space created
@@ -9,7 +9,7 @@ public class ParkingSpace {
     private boolean availability;            // whether parking is available
 
     /*
-     * REQUIRES: location has a non-zero length
+     * REQUIRES: location has a non-zero length, and charge >= 0
      * EFFECTS: location of parking space is set to location; charge is set to charge;
      *          availability is set to available; id is a
      *          positive integer not assigned to any other parking space
