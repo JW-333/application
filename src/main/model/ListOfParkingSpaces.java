@@ -63,11 +63,11 @@ public class ListOfParkingSpaces {
     // REQUIRES: length of currentLocation > 0
     // EFFECTS: return a list of parking spaces that share
     // same location with user's current location
-    public List<ParkingSpace> searchParkingSpaces(String currentLocation) {
-        LinkedList<ParkingSpace> searchResult = new LinkedList<ParkingSpace>();
+    public ListOfParkingSpaces searchParkingSpaces(String currentLocation) {
+        ListOfParkingSpaces searchResult = new ListOfParkingSpaces();
         for (ParkingSpace p : listOfParkingSpaces) {
             if (p.getLocation().contains(currentLocation)) {
-                searchResult.add(p);
+                searchResult.addParkingSpace(p);
             }
         }
         return searchResult;
@@ -76,11 +76,11 @@ public class ListOfParkingSpaces {
     // REQUIRES: length of currentLocation > 0
     // EFFECTS: return a list of available parking spaces that contain
     // the keyword the user enters
-    public List<ParkingSpace> searchAvailableParkingSpaces(String currentLocation) {
-        LinkedList<ParkingSpace> searchResult = new LinkedList<ParkingSpace>();
+    public ListOfParkingSpaces searchAvailableParkingSpaces(String currentLocation) {
+        ListOfParkingSpaces searchResult = new ListOfParkingSpaces();
         for (ParkingSpace p : listOfParkingSpaces) {
             if ((p.getLocation().contains(currentLocation)) && (p.getAvailability())) {
-                searchResult.add(p);
+                searchResult.addParkingSpace(p);
             }
         }
         return searchResult;
@@ -90,6 +90,17 @@ public class ListOfParkingSpaces {
     // EFFECTS: return parking space with index num (num starts at 1)
     public ParkingSpace getParkingSpaceOfIndex(int num) {
         return listOfParkingSpaces.get(num - 1);
+    }
+
+    /*
+     * EFFECTS: returns a string representation of list of parking
+     */
+    public List<String> displayList() {
+        LinkedList<String> list = new LinkedList<>();
+        for (ParkingSpace p: listOfParkingSpaces) {
+            list.add(listOfParkingSpaces.indexOf(p) + 1 + ". " + p.toString());
+        }
+        return list;
     }
 }
 

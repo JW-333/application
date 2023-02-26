@@ -111,19 +111,19 @@ public class ListOfParkingSpaceTest {
         testListOfParkingSpace.addParkingSpace(testParkingSpace);
         testParkingSpace = new ParkingSpace("2250 Health Sciences Mall V6T 1Z3, UBC", 2);
         testListOfParkingSpace.addParkingSpace(testParkingSpace);
-        assertEquals(2, testListOfParkingSpace.searchParkingSpaces("UBC").size());
-        assertEquals(0, testListOfParkingSpace.searchParkingSpaces("Oakridge Centre").size());
+        assertEquals(2, testListOfParkingSpace.searchParkingSpaces("UBC").length());
+        assertEquals(0, testListOfParkingSpace.searchParkingSpaces("Oakridge Centre").length());
         assertEquals("2250 Health Sciences Mall V6T 1Z3, UBC",
-                testListOfParkingSpace.searchParkingSpaces("UBC").get(1).getLocation());
+                testListOfParkingSpace.searchParkingSpaces("UBC").getParkingSpaceOfIndex(2).getLocation());
         assertEquals(2,
-                testListOfParkingSpace.searchParkingSpaces("UBC").get(1).getCharge());
+                testListOfParkingSpace.searchParkingSpaces("UBC").getParkingSpaceOfIndex(2).getCharge());
         assertTrue(
-                testListOfParkingSpace.searchParkingSpaces("UBC").get(1).getAvailability());
+                testListOfParkingSpace.searchParkingSpaces("UBC").getParkingSpaceOfIndex(2).getAvailability());
         testParkingSpace = new ParkingSpace("5251 Oak St V6M 4H1", 5);
         testListOfParkingSpace.addParkingSpace(testParkingSpace);
-        assertEquals(2, testListOfParkingSpace.searchParkingSpaces("UBC").size());
+        assertEquals(2, testListOfParkingSpace.searchParkingSpaces("UBC").length());
         assertEquals("2250 Health Sciences Mall V6T 1Z3, UBC",
-                testListOfParkingSpace.searchParkingSpaces("UBC").get(1).getLocation());
+                testListOfParkingSpace.searchParkingSpaces("UBC").getParkingSpaceOfIndex(2).getLocation());
         testParkingSpace = new ParkingSpace("6525 Oak St, Vancouver, BC V6P 3Z3", 6);
         testListOfParkingSpace.addParkingSpace(testParkingSpace);
         assertTrue(testListOfParkingSpace.searchParkingSpaces("Kistlano").isEmpty());
@@ -134,18 +134,28 @@ public class ListOfParkingSpaceTest {
         testListOfParkingSpace.addParkingSpace(testParkingSpace);
         testParkingSpace = new ParkingSpace("2250 Health Sciences Mall V6T 1Z3, UBC", 2);
         testListOfParkingSpace.addParkingSpace(testParkingSpace);
-        assertEquals(2, testListOfParkingSpace.searchAvailableParkingSpaces("UBC").size());
-        assertEquals(0, testListOfParkingSpace.searchAvailableParkingSpaces("Oakridge Centre").size());
+        assertEquals(2, testListOfParkingSpace.searchAvailableParkingSpaces("UBC").length());
+        assertEquals(0, testListOfParkingSpace.searchAvailableParkingSpaces("Oakridge Centre").length());
         testListOfParkingSpace.changeAvailabilityOfIndex(1);
-        assertEquals(1, testListOfParkingSpace.searchAvailableParkingSpaces("UBC").size());
+        assertEquals(1, testListOfParkingSpace.searchAvailableParkingSpaces("UBC").length());
         testParkingSpace = new ParkingSpace("5251 Oak St V6M 4H1", 5);
         testListOfParkingSpace.addParkingSpace(testParkingSpace);
-        assertEquals(2, testListOfParkingSpace.searchAvailableParkingSpaces("V6").size());
+        assertEquals(2, testListOfParkingSpace.searchAvailableParkingSpaces("V6").length());
         assertEquals("5251 Oak St V6M 4H1",
-                testListOfParkingSpace.searchParkingSpaces("V6").get(2).getLocation());
-
+                testListOfParkingSpace.searchParkingSpaces("V6").getParkingSpaceOfIndex(3).getLocation());
     }
 
+    @Test
+    void testDisplayList() {
+        testListOfParkingSpace.addParkingSpace(testParkingSpace);
+        testParkingSpace = new ParkingSpace("2250 Health Sciences Mall V6T 1Z3, UBC", 2);
+        testListOfParkingSpace.addParkingSpace(testParkingSpace);
+        assertEquals("location:" + "6115 Student Union Boulevard V6T 1Z1, UBC"+ ", " + 1.0 + "$/hour" + "," +
+                "available", testListOfParkingSpace.displayList().get(0));
+        assertEquals(2, testListOfParkingSpace.displayList().size());
+        assertEquals("location:" + "2250 Health Sciences Mall V6T 1Z3, UBC" +  ", " + 2.0 + "$/hour" + ", " +
+                "available", testListOfParkingSpace.displayList().get(1));
+    }
 }
 
 

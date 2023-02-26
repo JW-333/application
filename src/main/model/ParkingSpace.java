@@ -67,7 +67,7 @@ public class ParkingSpace {
     }
 
     /*
-     * EFFECTS: returns a string representation of Parking
+     * EFFECTS: returns a string representation of parking
      */
     public String toString() {
         String ifAvailable;
@@ -77,7 +77,7 @@ public class ParkingSpace {
             ifAvailable = "unavailable";
         }
         return "location:" + location + ", "
-                + charge + "$/hour" + "," + ifAvailable;
+                + charge + "$/hour" + ", " + ifAvailable;
     }
 }
 
