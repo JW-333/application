@@ -49,6 +49,8 @@ class ParkingSpaceTest {
     void testUpdateAvailability() {
         testParkingSpace.updateAvailability();
         assertFalse(testParkingSpace.getAvailability());
+        testParkingSpace.updateAvailability();
+        assertTrue(testParkingSpace.getAvailability());
     }
 
     @Test
