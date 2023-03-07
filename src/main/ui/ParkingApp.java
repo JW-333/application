@@ -88,7 +88,9 @@ public class ParkingApp {
     // EFFECTS: displays menu of options to user
     private void displayMenu() {
         System.out.println("Hi! Here are some parking spaces:");
-        System.out.println(listOfParkingSpaces.displayList());
+        for (String t: listOfParkingSpaces.displayList()){
+            System.out.println(t);
+        }
         System.out.println("\nSelect from:");
         System.out.println("\ts -> search parking");
         System.out.println("\ta -> add a parking space");

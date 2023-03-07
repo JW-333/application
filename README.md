@@ -21,4 +21,6 @@ may be useful to a lot of drivers.
 - *As a user, I want to be able to update the information about a parking space in the list because the
    previous information is not accurate.*
 - *As a user, I want to be able to remove a parking space in the list because it no longer exists.*
+- *As a user, when I quit the application, I want to have the option to save the list of parking spaces.*
+- *As a user, when I start the application, I want to load the list of parking spaces.*
 
