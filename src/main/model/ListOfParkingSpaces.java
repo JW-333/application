@@ -3,6 +3,7 @@ package model;
 import java.util.LinkedList;
 import java.util.List;
 
+// Represents a list of parking spaces
 public class ListOfParkingSpaces {
     private LinkedList<ParkingSpace> listOfParkingSpaces;
 

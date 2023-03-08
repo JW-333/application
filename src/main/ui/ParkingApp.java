@@ -6,6 +6,7 @@ import model.ParkingSpace;
 import java.util.LinkedList;
 import java.util.Scanner;
 
+// User interface of the parking app
 public class ParkingApp {
 
     private ParkingSpace parkingSpace1;
@@ -88,7 +89,7 @@ public class ParkingApp {
     // EFFECTS: displays menu of options to user
     private void displayMenu() {
         System.out.println("Hi! Here are some parking spaces:");
-        for (String t: listOfParkingSpaces.displayList()){
+        for (String t : listOfParkingSpaces.displayList()) {
             System.out.println(t);
         }
         System.out.println("\nSelect from:");
@@ -119,8 +120,8 @@ public class ParkingApp {
         System.out.print("enter the location");
         String location = input.next();
         System.out.print("enter the charge");
-        if (input.nextDouble() >= 0) {
-            double charge = input.nextDouble();
+        double charge = input.nextDouble();
+        if (charge >= 0) {
             listOfParkingSpaces.addParkingSpace(new ParkingSpace(location, charge));
         } else {
             System.out.println("amount not valid");
@@ -145,11 +146,12 @@ public class ParkingApp {
         System.out.println("change location");
         System.out.println("change charge");
         System.out.println("change availability");
-        if (input.next().equals("change location")) {
+        String selection = input.next();
+        if (selection.equals("change location")) {
             changeLocation(index);
-        } else if (input.next().equals("change charge")) {
+        } else if (selection.equals("change charge")) {
             changeCharge(index);
-        } else if (input.next().equals("change availability")) {
+        } else if (selection.equals("change availability")) {
             changeAvailability(index);
         } else {
             System.out.println("selection not valid");
@@ -168,8 +170,9 @@ public class ParkingApp {
     // EFFECTS: change the charge of a parking space
     private void changeCharge(int num) {
         System.out.println("enter new charge");
-        if (input.nextInt() >= 0) {
-            listOfParkingSpaces.changeChargeOfIndex(input.nextInt(), num);
+        double charge = input.nextDouble();
+        if (charge >= 0) {
+            listOfParkingSpaces.changeChargeOfIndex(charge, num);
             System.out.println(listOfParkingSpaces.getParkingSpaceOfIndex(num).toString());
         } else {
             System.out.println("amount not valid");
