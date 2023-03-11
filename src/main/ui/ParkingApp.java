@@ -3,8 +3,11 @@ package ui;
 import model.ListOfParkingSpaces;
 import model.ParkingSpace;
 
-import java.util.LinkedList;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
 // User interface of the parking app
 public class ParkingApp {
@@ -17,9 +20,15 @@ public class ParkingApp {
     private ParkingSpace parkingSpace6;
     private ListOfParkingSpaces listOfParkingSpaces;
     private Scanner input;
+    private static final String JSON_STORE = "./data/listofparkingspaces.json";
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     // EFFECTS: runs the find parking space application
     public ParkingApp() {
+        input = new Scanner(System.in);
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         run();
     }
 
@@ -49,14 +58,18 @@ public class ParkingApp {
     // MODIFIES: this
     // EFFECTS: processes user command
     private void processCommand(String command) {
-        if (command.equals("s")) {
+        if (command.equals("search")) {
             search();
-        } else if (command.equals("a")) {
+        } else if (command.equals("add")) {
             addParking();
-        } else if (command.equals("r")) {
+        } else if (command.equals("remove")) {
             removeParking();
-        } else if (command.equals("e")) {
+        } else if (command.equals("edit")) {
             editParking();
+        } else if (command.equals("save")) {
+            saveListOfParkingSpaces();
+        } else if (command.equals("load")) {
+            loadListOfParkingSpaces();
         } else {
             System.out.println("Selection not valid...");
         }
@@ -88,16 +101,15 @@ public class ParkingApp {
 
     // EFFECTS: displays menu of options to user
     private void displayMenu() {
-        System.out.println("Hi! Here are some parking spaces:");
-        for (String t : listOfParkingSpaces.displayList()) {
-            System.out.println(t);
-        }
-        System.out.println("\nSelect from:");
-        System.out.println("\ts -> search parking");
-        System.out.println("\ta -> add a parking space");
-        System.out.println("\tr -> remove a parking space");
-        System.out.println("\te -> edit a parking space");
-        System.out.println("\tq -> quit");
+        System.out.println("Hi!");
+        System.out.println("Please select from:");
+        System.out.println("\tsearch -> search parking");
+        System.out.println("\tadd -> add a parking space");
+        System.out.println("\tremove -> remove a parking space");
+        System.out.println("\tedit -> edit a parking space");
+        System.out.println("\tsave -> save list of parking spaces to file");
+        System.out.println("\tload -> load list of parking spaces to file");
+        System.out.println("\tquit -> quit");
     }
 
     // EFFECTS: display parking spaces whose location contain keyword that the user types in
@@ -107,9 +119,10 @@ public class ParkingApp {
         System.out.println(listOfParkingSpaces.searchParkingSpaces(keyword).displayList());
         System.out.println("\tfilter -> show available parking spaces");
         System.out.println("\treturn -> return to menu");
-        if (input.next().equals("filter")) {
+        String selection = input.next();
+        if (selection.equals("filter")) {
             System.out.println(listOfParkingSpaces.searchAvailableParkingSpaces(keyword).displayList());
-        } else if (input.next().equals("return")) {
+        } else if (selection.equals("return")) {
             run();
         }
     }
@@ -142,16 +155,16 @@ public class ParkingApp {
         System.out.println("enter the index of parking space you would like to edit");
         int index = input.nextInt();
         System.out.println(listOfParkingSpaces.getParkingSpaceOfIndex(index).toString());
-        System.out.println("select from:");
-        System.out.println("change location");
-        System.out.println("change charge");
-        System.out.println("change availability");
+        System.out.println("What would you like to change?");
+        System.out.println("Location");
+        System.out.println("Charge");
+        System.out.println("Availability");
         String selection = input.next();
-        if (selection.equals("change location")) {
+        if (selection.equals("location")) {
             changeLocation(index);
-        } else if (selection.equals("change charge")) {
+        } else if (selection.equals("charge")) {
             changeCharge(index);
-        } else if (selection.equals("change availability")) {
+        } else if (selection.equals("availability")) {
             changeAvailability(index);
         } else {
             System.out.println("selection not valid");
@@ -186,6 +199,30 @@ public class ParkingApp {
         System.out.println(listOfParkingSpaces.getParkingSpaceOfIndex(num).toString());
     }
 
+    // EFFECTS: saves the workroom to file
+    private void saveListOfParkingSpaces() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(listOfParkingSpaces);
+            jsonWriter.close();
+            System.out.println("Saved " + "list of parking spaces" + " to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
 
+    // MODIFIES: this
+    // EFFECTS: loads workroom from file
+    private void loadListOfParkingSpaces() {
+        try {
+            listOfParkingSpaces = jsonReader.read();
+            System.out.println("Loaded " + "list of parking spaces" + " from " + JSON_STORE);
+            for (String t : listOfParkingSpaces.displayList()) {
+                System.out.println(t);
+            }
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
+    }
 }
 

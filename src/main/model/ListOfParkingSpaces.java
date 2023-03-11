@@ -1,10 +1,14 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.LinkedList;
 import java.util.List;
 
 // Represents a list of parking spaces
-public class ListOfParkingSpaces {
+public class ListOfParkingSpaces implements Writable {
     private LinkedList<ParkingSpace> listOfParkingSpaces;
 
     /*
@@ -98,10 +102,28 @@ public class ListOfParkingSpaces {
      */
     public List<String> displayList() {
         LinkedList<String> list = new LinkedList<>();
-        for (ParkingSpace p: listOfParkingSpaces) {
+        for (ParkingSpace p : listOfParkingSpaces) {
             list.add(listOfParkingSpaces.indexOf(p) + 1 + ". " + p.toString());
         }
         return list;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("list of parking spaces", parkingSpacesToJson());
+        return json;
+    }
+
+    // EFFECTS: returns things in this workroom as a JSON array
+    private JSONArray parkingSpacesToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (ParkingSpace p : listOfParkingSpaces) {
+            jsonArray.put(p.toJson());
+        }
+
+        return jsonArray;
     }
 }
 

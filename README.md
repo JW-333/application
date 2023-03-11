@@ -24,3 +24,5 @@ may be useful to a lot of drivers.
 - *As a user, when I quit the application, I want to have the option to save the list of parking spaces.*
 - *As a user, when I start the application, I want to load the list of parking spaces.*
 
+Citation: persistence package uses code from https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
+

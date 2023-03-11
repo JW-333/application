@@ -1,0 +1,56 @@
+{"list of parking spaces": [
+    {
+        "charge": 1,
+        "location": "6115 Student Union Boulevard V6T 1Z1, UBC",
+        "id": 7,
+        "availability": true
+    },
+    {
+        "charge": 6,
+        "location": "2250 Health Sciences Mall V6T 1Z3, UBC",
+        "id": 8,
+        "availability": true
+    },
+    {
+        "charge": 2,
+        "location": "6525 Oak St, Vancouver, BC V6P 3Z3",
+        "id": 9,
+        "availability": true
+    },
+    {
+        "charge": 5,
+        "location": "5251 Oak St V6M 4H1",
+        "id": 10,
+        "availability": true
+    },
+    {
+        "charge": 1,
+        "location": "6278 NW Marine Drive V6T 1Z1, UBC",
+        "id": 11,
+        "availability": true
+    },
+    {
+        "charge": 6,
+        "location": "6108 Thunderbird Boulevard UBC",
+        "id": 12,
+        "availability": true
+    },
+    {
+        "charge": 1,
+        "location": "ubc",
+        "id": 13,
+        "availability": true
+    },
+    {
+        "charge": 2,
+        "location": "kistlano",
+        "id": 14,
+        "availability": true
+    },
+    {
+        "charge": 5,
+        "location": "tofino",
+        "id": 15,
+        "availability": true
+    }
+]}

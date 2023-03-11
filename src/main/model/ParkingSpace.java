@@ -1,7 +1,10 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 // Represents a parking space with a location, charge/hour (in dollars), availability, and ID
-public class ParkingSpace {
+public class ParkingSpace implements Writable {
     private String location;                 // location of parking
     private static int nextId = 1;           // tracks id of next parking space created
     private int id;                          // id of parking space
@@ -78,6 +81,16 @@ public class ParkingSpace {
         }
         return "location:" + location + ", "
                 + charge + "$/hour" + ", " + ifAvailable;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("location", location);
+        json.put("id", id);
+        json.put("charge", charge);
+        json.put("availability", availability);
+        return json;
     }
 }
 
