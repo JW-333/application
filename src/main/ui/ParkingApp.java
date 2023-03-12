@@ -199,7 +199,7 @@ public class ParkingApp {
         System.out.println(listOfParkingSpaces.getParkingSpaceOfIndex(num).toString());
     }
 
-    // EFFECTS: saves the workroom to file
+    // EFFECTS: saves the list of parking spaces to file
     private void saveListOfParkingSpaces() {
         try {
             jsonWriter.open();
@@ -212,7 +212,7 @@ public class ParkingApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: loads workroom from file
+    // EFFECTS: loads list of parking spaces from file
     private void loadListOfParkingSpaces() {
         try {
             listOfParkingSpaces = jsonReader.read();

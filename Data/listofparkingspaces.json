@@ -1,6 +1,6 @@
 {"list of parking spaces": [
     {
-        "charge": 1,
+        "charge": 10,
         "location": "6115 Student Union Boulevard V6T 1Z1, UBC",
         "availability": true
     },
@@ -46,7 +46,7 @@
     },
     {
         "charge": 9,
-        "location": "ubc",
+        "location": "Mexico",
         "availability": true
     }
 ]}

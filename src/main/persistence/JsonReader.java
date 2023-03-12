@@ -45,8 +45,8 @@ public class JsonReader {
         return listOfParkingSpaces;
     }
 
-    // MODIFIES: listofparkingspaces
-    // EFFECTS: parses ParkingSpaces from JSON object and adds them to listofparkingspaces
+    // MODIFIES: list of parking spaces
+    // EFFECTS: parses parking spaces from JSON object and adds them to list of parking spaces
     private void addParkingSpaces(ListOfParkingSpaces listOfParkingSpaces, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("list of parking spaces");
         for (Object json : jsonArray) {
@@ -55,8 +55,8 @@ public class JsonReader {
         }
     }
 
-    // MODIFIES: listofparkingspaces
-    // EFFECTS: parses parkingspace from JSON object and adds it to listofparkingspaces
+    // MODIFIES: list of parking spaces
+    // EFFECTS: parses parking space from JSON object and adds it to list of parking spaces
     private void addParkingSpace(ListOfParkingSpaces listOfParkingSpaces, JSONObject jsonObject) {
         String location = jsonObject.getString("location");
         double charge = jsonObject.getDouble("charge");

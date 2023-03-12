@@ -47,8 +47,7 @@ class JsonWriterTest extends JsonTest {
             writer.close();
             JsonReader reader = new JsonReader("./data/testWriterGeneralListOfParkingSpaces.json");
             listOfParkingSpaces = reader.read();
-            ListOfParkingSpaces testListOfParkingSpaces = listOfParkingSpaces;
-            assertEquals(2, testListOfParkingSpaces.length());
+            assertEquals(2, listOfParkingSpaces.length());
             checkParkingSpace(listOfParkingSpaces.getParkingSpaceOfIndex(1), "UBC", 6);
             checkParkingSpace(listOfParkingSpaces.getParkingSpaceOfIndex(2), "Kistlano", 7);
 
