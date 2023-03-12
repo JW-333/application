@@ -8,7 +8,7 @@ import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class JsonReaderTest extends JsonTest{
+public class JsonReaderTest extends JsonTest{
 
     @Test
     void testReaderNonExistentFile() {
