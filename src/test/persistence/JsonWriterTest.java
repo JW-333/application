@@ -6,18 +6,15 @@ import org.junit.jupiter.api.Test;
 import persistence.JsonReader;
 import persistence.JsonTest;
 import persistence.JsonWriter;
-
 import java.io.IOException;
 import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
-public class JsonWriterTest extends JsonTest {
+class JsonWriterTest extends JsonTest {
 
     @Test
     void testWriterInvalidFile() {
         try {
-            ListOfParkingSpaces listOfParkingSpaces = new ListOfParkingSpaces();
             JsonWriter writer = new JsonWriter("./data/my\0illegal:fileName.json");
             writer.open();
             fail("IOException was expected");
