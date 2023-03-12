@@ -2,13 +2,11 @@
     {
         "charge": 6,
         "location": "UBC",
-        "id": 1,
         "availability": true
     },
     {
         "charge": 7,
         "location": "Kistlano",
-        "id": 2,
         "availability": true
     }
 ]}

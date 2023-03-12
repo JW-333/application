@@ -8,7 +8,7 @@ import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class JsonReaderTest extends JsonTest {
+class JsonReaderTest extends JsonTest{
 
     @Test
     void testReaderNonExistentFile() {
@@ -41,7 +41,6 @@ class JsonReaderTest extends JsonTest {
     void testReaderGeneralListOfParkingSpaces() {
         JsonReader reader = new JsonReader("./data/testReaderGeneralListOfParkingSpaces.json");
         try {
-
             ListOfParkingSpaces listOfParkingSpaces = new ListOfParkingSpaces();
             listOfParkingSpaces.addParkingSpace(new ParkingSpace("UBC", 6));
             listOfParkingSpaces.addParkingSpace(new ParkingSpace("Kistlano", 7));
