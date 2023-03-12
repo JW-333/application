@@ -3,11 +3,7 @@ package persistence;
 import model.ParkingSpace;
 import model.ListOfParkingSpaces;
 import org.junit.jupiter.api.Test;
-import persistence.JsonReader;
-import persistence.JsonTest;
-import persistence.JsonWriter;
 import java.io.IOException;
-import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class JsonWriterTest extends JsonTest {

@@ -1,11 +1,8 @@
 package persistence;
-
 import model.ListOfParkingSpaces;
 import model.ParkingSpace;
 import org.junit.jupiter.api.Test;
-
 import java.io.IOException;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class JsonReaderTest extends JsonTest{
