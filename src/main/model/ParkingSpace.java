@@ -87,7 +87,6 @@ public class ParkingSpace implements Writable {
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("location", location);
-        json.put("id", id);
         json.put("charge", charge);
         json.put("availability", availability);
         return json;

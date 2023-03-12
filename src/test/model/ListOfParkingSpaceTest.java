@@ -1,6 +1,9 @@
 package model;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -156,6 +159,21 @@ public class ListOfParkingSpaceTest {
         testListOfParkingSpace.changeAvailabilityOfIndex(2);
         assertEquals("2. " + "location:" + "2250 Health Sciences Mall V6T 1Z3, UBC" +  ", " + 2.0 + "$/hour" + ", " +
                 "unavailable", testListOfParkingSpace.displayList().get(1));
+    }
+
+    @Test
+    void testParkingSpacesToJson() {
+        testListOfParkingSpace.addParkingSpace(testParkingSpace);
+        testParkingSpace = new ParkingSpace("2250 Health Sciences Mall V6T 1Z3, UBC", 2);
+        testListOfParkingSpace.addParkingSpace(testParkingSpace);
+        JSONObject jsonObject = testListOfParkingSpace.toJson();
+        assertTrue(jsonObject.has("list of parking spaces"));
+        JSONArray jsonArray = jsonObject.getJSONArray("list of parking spaces");
+        assertEquals(2, jsonArray.getJSONObject(1).getDouble("charge"));
+        assertEquals("2250 Health Sciences Mall V6T 1Z3, UBC", jsonArray.getJSONObject(1).getString("location"));
+        assertEquals(2, jsonArray.length());
+        assertEquals(1, jsonArray.getJSONObject(0).getDouble("charge"));
+        assertEquals("6115 Student Union Boulevard V6T 1Z1, UBC", jsonArray.getJSONObject(0).getString("location"));
     }
 }
 

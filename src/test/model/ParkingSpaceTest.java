@@ -2,11 +2,13 @@ package model;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class ParkingSpaceTest {
     private ParkingSpace testParkingSpace;
+    private String location;
 
     @BeforeEach
     void runBefore() {
@@ -65,5 +67,14 @@ class ParkingSpaceTest {
         testParkingSpace.updateAvailability();
         assertEquals("location:" + "2250 Health Sciences Mall V6T 1Z3, UBC"
                 + ", " + 5.0 + "$/hour" + ", " + "unavailable", testParkingSpace.toString());
+    }
+
+    @Test
+    void testToJson() {
+        ParkingSpace parkingSpace = new ParkingSpace("UBC", 1);
+        JSONObject jsonObject = parkingSpace.toJson();
+        assertEquals("UBC", jsonObject.getString("location"));
+        assertEquals(1, jsonObject.getInt("charge"));
+        assertEquals(true, jsonObject.getBoolean("availability"));
     }
 }
