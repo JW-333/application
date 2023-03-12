@@ -27,7 +27,6 @@ class JsonWriterTest extends JsonTest {
             writer.open();
             writer.write(listOfParkingSpaces);
             writer.close();
-
             JsonReader reader = new JsonReader("./data/testWriterEmptyListOfParkingSpaces.json");
             listOfParkingSpaces = reader.read();
             assertEquals(0, listOfParkingSpaces.length());
@@ -46,7 +45,6 @@ class JsonWriterTest extends JsonTest {
             writer.open();
             writer.write(listOfParkingSpaces);
             writer.close();
-
             JsonReader reader = new JsonReader("./data/testWriterGeneralListOfParkingSpaces.json");
             listOfParkingSpaces = reader.read();
             ListOfParkingSpaces testListOfParkingSpaces = listOfParkingSpaces;
