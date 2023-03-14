@@ -70,6 +70,8 @@ public class ParkingApp {
             saveListOfParkingSpaces();
         } else if (command.equals("load")) {
             loadListOfParkingSpaces();
+        } else if (command.equals("quit")) {
+        loadListOfParkingSpaces();
         } else {
             System.out.println("Selection not valid...");
         }
