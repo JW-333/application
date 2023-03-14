@@ -6,6 +6,7 @@ import model.ParkingSpace;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
+
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
@@ -71,7 +72,7 @@ public class ParkingApp {
         } else if (command.equals("load")) {
             loadListOfParkingSpaces();
         } else if (command.equals("quit")) {
-        loadListOfParkingSpaces();
+            loadListOfParkingSpaces();
         } else {
             System.out.println("Selection not valid...");
         }

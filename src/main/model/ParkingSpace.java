@@ -83,6 +83,7 @@ public class ParkingSpace implements Writable {
                 + charge + "$/hour" + ", " + ifAvailable;
     }
 
+    // EFFECTS: return json representation of parking space
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

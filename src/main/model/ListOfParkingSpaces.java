@@ -108,6 +108,7 @@ public class ListOfParkingSpaces implements Writable {
         return list;
     }
 
+    // EFFECTS: return json representation of list of parking spaces
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
@@ -115,7 +116,7 @@ public class ListOfParkingSpaces implements Writable {
         return json;
     }
 
-    // EFFECTS: returns things in this workroom as a JSON array
+    // EFFECTS: return parking spaces in list of parking spaces as a JSON array
     private JSONArray parkingSpacesToJson() {
         JSONArray jsonArray = new JSONArray();
 
