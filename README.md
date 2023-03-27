@@ -22,7 +22,7 @@ may be useful to a lot of drivers.
    previous information is not accurate.*
 - *As a user, I want to be able to remove a parking space in the list because it no longer exists.*
 - *As a user, when I quit the application, I want to have the option to save the list of parking spaces.*
-- *As a user, when I start the application, I want to load the list of parking spaces.*
+- *As a user, when I start the application, I want to have the option to load the list of parking spaces.*
 
 Citation: persistence package uses code from https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
 

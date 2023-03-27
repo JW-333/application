@@ -1,16 +1,39 @@
 package ui;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import model.ListOfParkingSpaces;
 import model.ParkingSpace;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.List;
+import java.util.Scanner;
+
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.Scanner;
+import javax.swing.*;
 
-// User interface of the parking app
-public class ParkingApp {
 
+/**
+ * Represents application's main window frame.
+ */
+class ParkingAppUI implements ActionListener{
+
+    private static final int WIDTH = 800;
+    private static final int HEIGHT = 600;
+    private static final String FILE_DESCRIPTOR = "...file";
+    private ParkingApp parkingApp;
+    private JFrame desktop;
+    private JPanel panel;
+    private JButton load;
+    private JButton search;
+    private JButton add;
+    private JButton remove;
+    private JButton edit;
+    private JButton save;
+    private JList<String> list;
     private ParkingSpace parkingSpace1;
     private ParkingSpace parkingSpace2;
     private ParkingSpace parkingSpace3;
@@ -23,57 +46,29 @@ public class ParkingApp {
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
 
-    // EFFECTS: runs the find parking space application
-    public ParkingApp() {
-        input = new Scanner(System.in);
+    /**
+     * Constructor sets up button panel, key pad and visual alarm status window.
+     */
+    public ParkingAppUI() {
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
-        run();
-    }
-
-    // MODIFIES: this
-    // EFFECTS: processes user input
-    private void run() {
-        boolean keepGoing = true;
-        String command = null;
-
         init();
-
-        while (keepGoing) {
-            displayMenu();
-            command = input.next();
-            command = command.toLowerCase();
-
-            if (command.equals("q")) {
-                keepGoing = false;
-            } else {
-                processCommand(command);
-            }
-        }
-
-        System.out.println("\nGoodbye!");
-    }
-
-    // MODIFIES: this
-    // EFFECTS: processes user command
-    private void processCommand(String command) {
-        if (command.equals("search")) {
-            search();
-        } else if (command.equals("add")) {
-            addParking();
-        } else if (command.equals("remove")) {
-            removeParking();
-        } else if (command.equals("edit")) {
-            editParking();
-        } else if (command.equals("save")) {
-            saveListOfParkingSpaces();
-        } else if (command.equals("load")) {
-            loadListOfParkingSpaces();
-        } else if (command.equals("quit")) {
-            loadListOfParkingSpaces();
-        } else {
-            System.out.println("Selection not valid...");
-        }
+        desktop = new JFrame();
+        panel = new JPanel();
+        panel.setLayout(new BorderLayout());
+        list = new JList<String>();
+        JLabel label = new JLabel("Let's find parking spaces!");
+        desktop.setTitle("Parking App");
+        desktop.setSize(WIDTH, HEIGHT);
+        addButtonPanel();
+        desktop.pack();
+        panel.setVisible(true);
+        panel.add(label);
+        desktop.add(panel, BorderLayout.CENTER);
+        desktop.add(list);
+        desktop.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        centreOnScreen();
+        desktop.setVisible(true);
     }
 
     // MODIFIES: this
@@ -96,25 +91,69 @@ public class ParkingApp {
         listOfParkingSpaces.addParkingSpace(parkingSpace4);
         listOfParkingSpaces.addParkingSpace(parkingSpace5);
         listOfParkingSpaces.addParkingSpace(parkingSpace6);
-        input = new Scanner(System.in);
-        input.useDelimiter("\n");
     }
 
-    // EFFECTS: displays menu of options to user
-    private void displayMenu() {
-        System.out.println("Hi!");
-        System.out.println("Please select from:");
-        System.out.println("\tsearch -> search parking");
-        System.out.println("\tadd -> add a parking space");
-        System.out.println("\tremove -> remove a parking space");
-        System.out.println("\tedit -> edit a parking space");
-        System.out.println("\tsave -> save list of parking spaces to file");
-        System.out.println("\tload -> load list of parking spaces to file");
-        System.out.println("\tquit -> quit");
+    /**
+     * Helper to add control buttons.
+     */
+    private void addButtonPanel() {
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new GridLayout(4, 2));
+        load = new JButton("load");
+        load.addActionListener(this);
+        search = new JButton("search");
+        search.addActionListener(this);
+        add = new JButton("add");
+        add.addActionListener(this);
+        remove = new JButton("remove");
+        remove.addActionListener(this);
+        edit = new JButton("edit");
+        edit.addActionListener(this);
+        save = new JButton("save");
+        save.addActionListener(this);
+        buttonPanel.add(load);
+        buttonPanel.add(search);
+        buttonPanel.add(add);
+        buttonPanel.add(remove);
+        buttonPanel.add(edit);
+        buttonPanel.add(save);
+        panel.add(buttonPanel, BorderLayout.WEST);
     }
 
+
+    /**
+     * Helper to centre main application window on desktop
+     */
+    private void centreOnScreen() {
+        int width = Toolkit.getDefaultToolkit().getScreenSize().width;
+        int height = Toolkit.getDefaultToolkit().getScreenSize().height;
+        desktop.setLocation((width - desktop.getWidth()) / 2, (height - desktop.getHeight()) / 2);
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == load) {
+            search();
+        } else if (e.getSource() == search) {
+
+        } else if (e.getSource() == add) {
+
+        } else if (e.getSource() == remove) {
+
+        } else if (e.getSource() == edit) {
+
+        } else if (e.getSource() == save) {
+
+        }
+        }
     // EFFECTS: display parking spaces whose location contain keyword that the user types in
     private void search() {
+        JPanel secondPanel = new JPanel();
+        secondPanel.setLayout(new BorderLayout());
+        secondPanel.add(new JLabel("search"), BorderLayout.CENTER);
+        panel.setVisible(false);
+        desktop.getContentPane().add(secondPanel);
+        secondPanel.setVisible(true);
+        addBackButton(secondPanel);
         System.out.println("Enter a keyword");
         String keyword = input.next();
         System.out.println(listOfParkingSpaces.searchParkingSpaces(keyword).displayList());
@@ -122,11 +161,25 @@ public class ParkingApp {
         System.out.println("\treturn -> return to menu");
         String selection = input.next();
         if (selection.equals("filter")) {
-            System.out.println(listOfParkingSpaces.searchAvailableParkingSpaces(keyword).displayList());
-        } else if (selection.equals("return")) {
-            run();
+            list = new JList<>();
+            List<String> newList = listOfParkingSpaces.searchAvailableParkingSpaces(keyword).displayList();
+            list = new JList<>(newList.toArray(new String[0]));
         }
     }
+
+    // EFFECTS: Add a "back" button to the second panel
+    private void addBackButton(JPanel subPanel) {
+
+        JButton backButton = new JButton("Back");
+        backButton.addActionListener(new ActionListener() {
+                                         @Override
+                                         public void actionPerformed(ActionEvent e) {
+                                             // Show the main panel and hide the second panel
+                                             subPanel.setVisible(false);
+                                             panel.setVisible(true);
+                                         }
+                                     });
+        subPanel.add(backButton, BorderLayout.SOUTH);}
 
     // MODIFIES: this
     // EFFECTS: add new parking space to list
@@ -225,5 +278,6 @@ public class ParkingApp {
             System.out.println("Unable to read from file: " + JSON_STORE);
         }
     }
-}
+    }
+
 
