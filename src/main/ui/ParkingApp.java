@@ -1,4 +1,5 @@
 package ui;
+
 import model.ListOfParkingSpaces;
 import model.ParkingSpace;
 import persistence.JsonReader;
