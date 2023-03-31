@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 
 import model.ListOfParkingSpaces;
 import model.ParkingSpace;
-import ui.Car;
 
 
 import java.io.FileNotFoundException;
@@ -17,10 +16,6 @@ import java.util.List;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
-
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
 
 import javax.swing.*;
 
@@ -69,7 +64,7 @@ class ParkingAppUI implements ActionListener {
         desktop.setTitle("Parking App");
         desktop.setSize(WIDTH, HEIGHT);
         addButtonPanel();
-        desktop.add(new Car(), BorderLayout.PAGE_END);
+        panel.add(new Car(), BorderLayout.PAGE_END);
         desktop.pack();
         desktop.add(panel, BorderLayout.CENTER);
         panel.add(label);
@@ -238,21 +233,18 @@ class ParkingAppUI implements ActionListener {
         JPanel secondPanel = new JPanel();
         secondPanel.setLayout(null);
         addBackButton(secondPanel);
+        setUpForAdd(secondPanel);
         desktop.add(secondPanel);
         panel.setVisible(false);
         secondPanel.setVisible(true);
         addParkingSpace(secondPanel);
     }
 
-    @SuppressWarnings("methodlength")
+
     // MODIFIES: this
     // EFFECT: creates a new JPanel for add
     private void addParkingSpace(JPanel panel) {
         JButton add = new JButton("add");
-        JLabel locationLabel = new JLabel("location");
-        JLabel chargeLabel = new JLabel("charge");
-        locationLabel.setBounds(410, 50, 165, 25);
-        chargeLabel.setBounds(410, 80, 165, 25);
         add.setBounds(660, 50, 80, 25);
         JTextField location = new JTextField(20);
         location.setBounds(480, 50, 165, 25);
@@ -261,37 +253,41 @@ class ParkingAppUI implements ActionListener {
         JTextField charge = new JTextField(20);
         charge.setBounds(480, 80, 165, 25);
         panel.add(charge);
-        panel.add(locationLabel);
-        panel.add(chargeLabel);
-        panel.validate();
-        panel.repaint();
-
         add.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String locationString = location.getText();
                 int chargeInt = Integer.parseInt(charge.getText());
-                if (chargeInt >= 0) {
-                    listOfParkingSpaces.addParkingSpace(new ParkingSpace(locationString, chargeInt));
-                    JLabel addedSuccessfully = new JLabel("added successfully");
-                    panel.add(addedSuccessfully);
-                    panel.validate();
-                    panel.repaint();
-                } else {
-                    JLabel amountNotValid = new JLabel("amount not valid");
-                    panel.add(amountNotValid);
-                    panel.validate();
-                    panel.repaint();
-                }
-                panel.remove(list);
-                List<String> newList = listOfParkingSpaces.displayList();
-                list = new JList<>(newList.toArray(new String[0]));
-                list.setBounds(0, 0, 1000, 1000);
-                panel.add(list);
+                listOfParkingSpaces.addParkingSpace(new ParkingSpace(locationString, chargeInt));
+                JLabel addedSuccessfully = new JLabel("added successfully");
+                addedSuccessfully.setBounds(480, 100, 165, 25);
+                panel.add(addedSuccessfully);
+                addList(panel);
                 panel.validate();
                 panel.repaint();
             }
         });
+    }
+
+    // MODIFIES: this
+    // EFFECTS: creates components for add
+    private void setUpForAdd(JPanel panel) {
+        JLabel locationLabel = new JLabel("location");
+        JLabel chargeLabel = new JLabel("charge");
+        locationLabel.setBounds(410, 50, 165, 25);
+        chargeLabel.setBounds(410, 80, 165, 25);
+        panel.add(locationLabel);
+        panel.add(chargeLabel);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: creates components for addParkingSpace
+    private void addList(JPanel panel) {
+        panel.remove(list);
+        List<String> newList = listOfParkingSpaces.displayList();
+        list = new JList<>(newList.toArray(new String[0]));
+        list.setBounds(0, 0, 1000, 1000);
+        panel.add(list);
     }
 
     // MODIFIES: this
@@ -306,24 +302,16 @@ class ParkingAppUI implements ActionListener {
         removeParkingSpace(secondPanel);
     }
 
-    @SuppressWarnings("methodlength")
+    // MODIFIES: this
+    // EFFECTS: creates functionality for remove
     private void removeParkingSpace(JPanel panel) {
         JButton remove = new JButton("remove");
-        JLabel index = new JLabel("index");
-        index.setBounds(410, 50, 50, 25);
         remove.setBounds(660, 50, 80, 25);
         JTextField indexField = new JTextField(20);
         indexField.setBounds(480, 50, 165, 25);
         panel.add(remove);
         panel.add(indexField);
-        panel.add(index);
-        List<String> newList = listOfParkingSpaces.displayList();
-        list = new JList<>(newList.toArray(new String[0]));
-        list.setBounds(0, 0, 1000, 1000);
-        panel.add(list);
-        panel.validate();
-        panel.repaint();
-
+        setUpForRemove(panel);
         remove.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -331,8 +319,6 @@ class ParkingAppUI implements ActionListener {
                 listOfParkingSpaces.removeParkingSpaceOfIndex(indexInt);
                 JLabel removedSuccessfully = new JLabel("removed successfully");
                 panel.add(removedSuccessfully);
-                panel.validate();
-                panel.repaint();
                 panel.remove(list);
                 List<String> newList = listOfParkingSpaces.displayList();
                 list = new JList<>(newList.toArray(new String[0]));
@@ -342,6 +328,18 @@ class ParkingAppUI implements ActionListener {
                 panel.repaint();
             }
         });
+    }
+
+    // MODIFIES: this
+    // EFFECTS: creates components for remove
+    private void setUpForRemove(JPanel panel) {
+        JLabel index = new JLabel("index");
+        index.setBounds(410, 50, 50, 25);
+        panel.add(index);
+        List<String> newList = listOfParkingSpaces.displayList();
+        list = new JList<>(newList.toArray(new String[0]));
+        list.setBounds(0, 0, 1000, 1000);
+        panel.add(list);
     }
 
 
@@ -362,7 +360,7 @@ class ParkingAppUI implements ActionListener {
 
     @SuppressWarnings("methodlength")
     // MODIFIES: this
-    // EFFECTS: creates buttons and funtionality for edit
+    // EFFECTS: creates buttons and functionality for edit
     private void editParkingSpace(JPanel panel) {
         JButton done = new JButton("done");
         done.setBounds(660, 20, 80, 25);
@@ -408,7 +406,6 @@ class ParkingAppUI implements ActionListener {
         });
     }
 
-    @SuppressWarnings("methodlength")
     // MODIFIES: this
     // EFFECTS: adds change availability button to edit
     private void changeAvailability(JPanel panel) {
@@ -421,18 +418,12 @@ class ParkingAppUI implements ActionListener {
         panel.add(indexText);
         panel.add(index);
         panel.add(availability);
-        panel.validate();
-        panel.repaint();
         availability.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int input = Integer.parseInt(index.getText());
-                panel.remove(list);
                 listOfParkingSpaces.changeAvailabilityOfIndex(input);
-                List<String> newList = listOfParkingSpaces.displayList();
-                list = new JList<>(newList.toArray(new String[0]));
-                list.setBounds(0, 0, 1000, 1000);
-                panel.add(list);
+                addList(panel);
                 panel.validate();
                 panel.repaint();
             }
@@ -475,5 +466,3 @@ class ParkingAppUI implements ActionListener {
 
     }
 }
-
-

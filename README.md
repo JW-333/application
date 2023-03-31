@@ -28,10 +28,12 @@ Citation: persistence package uses code from https://github.students.cs.ubc.ca/C
 
 # Instructions for Grader
 
-- You can add a parking space to the list of parking spaces by
-  clicking add in the menu, and in the new page, enter the location and charge of the new parking space, and click add.
+- You can add a parking space to the list of parking spaces by clicking add in the menu, and in the new page,
+  enter the location and charge of the new parking space, and click add.
 - You can search a parking space by clicking search, and in the new page, enter the location and click search.
 - You can remove a parking space by clicking remove, and in the new page, enter the index and click remove.
+- You can filter to available parking spaces by by clicking search, and in the new page, click filter.
+- You can edit a parking space by clicking edit, and in the new page, enter the information and click done.
 - You can locate my visual component in the main page, which is an image of two cars.
 - You can save the state of my application by clicking save.
 - You can reload the state of my application by clicking load.
