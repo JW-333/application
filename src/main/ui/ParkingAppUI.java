@@ -21,7 +21,6 @@ import persistence.JsonWriter;
 import javax.swing.*;
 
 
-
 /**
  * Represents Parking App's main frame.
  */
@@ -69,21 +68,25 @@ class ParkingAppUI implements ActionListener {
         panel.add(new Car(), BorderLayout.PAGE_END);
         desktop.pack();
         desktop.add(panel, BorderLayout.CENTER);
+        addListener();
         panel.add(label);
         desktop.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         desktop.setSize(WIDTH, HEIGHT);
-        desktop.addWindowListener(new WindowAdapter()
-        {
+        centreOnScreen();
+        desktop.setVisible(true);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: adds Window Listener to desktop
+    private void addListener() {
+        desktop.addWindowListener(new WindowAdapter() {
             @Override
-            public void windowClosing(WindowEvent e)
-            {
-                for (Event event: EventLog.getInstance()) {
+            public void windowClosing(WindowEvent e) {
+                for (Event event : EventLog.getInstance()) {
                     System.out.println(event.getDescription());
                 }
             }
         });
-        centreOnScreen();
-        desktop.setVisible(true);
     }
 
     // MODIFIES: this
