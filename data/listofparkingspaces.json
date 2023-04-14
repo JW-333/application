@@ -1,17 +1,12 @@
 {"list of parking spaces": [
     {
-        "charge": 10,
+        "charge": 1,
         "location": "6115 Student Union Boulevard V6T 1Z1, UBC",
         "availability": true
     },
     {
         "charge": 6,
         "location": "2250 Health Sciences Mall V6T 1Z3, UBC",
-        "availability": true
-    },
-    {
-        "charge": 2,
-        "location": "6525 Oak St, Vancouver, BC V6P 3Z3",
         "availability": true
     },
     {
@@ -27,26 +22,6 @@
     {
         "charge": 6,
         "location": "6108 Thunderbird Boulevard UBC",
-        "availability": true
-    },
-    {
-        "charge": 1,
-        "location": "ubc",
-        "availability": true
-    },
-    {
-        "charge": 2,
-        "location": "kistlano",
-        "availability": true
-    },
-    {
-        "charge": 5,
-        "location": "tofino",
-        "availability": true
-    },
-    {
-        "charge": 9,
-        "location": "Mexico",
         "availability": true
     }
 ]}

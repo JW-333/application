@@ -1,5 +1,8 @@
 package ui;
 
+import model.Event;
+import model.EventLog;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;

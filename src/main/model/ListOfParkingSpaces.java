@@ -23,6 +23,7 @@ public class ListOfParkingSpaces implements Writable {
     // MODIFIES: this
     public void addParkingSpace(ParkingSpace p) {
         listOfParkingSpaces.add(p);
+        EventLog.getInstance().logEvent(new Event("parking space added to list of parking space"));
     }
 
     // REQUIRES: index num > 0
@@ -30,6 +31,7 @@ public class ListOfParkingSpaces implements Writable {
     // MODIFIES: this
     public void removeParkingSpaceOfIndex(int num) {
         listOfParkingSpaces.remove(getParkingSpaceOfIndex(num));
+        EventLog.getInstance().logEvent(new Event("parking space removed from list of parking space"));
     }
 
     // REQUIRES: index num > 0
@@ -37,6 +39,7 @@ public class ListOfParkingSpaces implements Writable {
     // MODIFIES: this
     public void changeLocationOfIndex(String newLocation, int num) {
         getParkingSpaceOfIndex(num).updateLocation(newLocation);
+        EventLog.getInstance().logEvent(new Event("location of parking space changed"));
     }
 
     // REQUIRES: index num > 0
@@ -44,6 +47,7 @@ public class ListOfParkingSpaces implements Writable {
     // MODIFIES: this
     public void changeChargeOfIndex(double newCharge, int num) {
         getParkingSpaceOfIndex(num).updateCharge(newCharge);
+        EventLog.getInstance().logEvent(new Event("charge of parking space changed"));
     }
 
 
@@ -53,6 +57,7 @@ public class ListOfParkingSpaces implements Writable {
     // MODIFIES: this
     public void changeAvailabilityOfIndex(int num) {
         getParkingSpaceOfIndex(num).updateAvailability();
+        EventLog.getInstance().logEvent(new Event("availability of parking space changed"));
     }
 
     // EFFECTS: return number of parking spaces
@@ -75,6 +80,7 @@ public class ListOfParkingSpaces implements Writable {
                 searchResult.addParkingSpace(p);
             }
         }
+        EventLog.getInstance().logEvent(new Event("search action performed"));
         return searchResult;
     }
 
@@ -88,6 +94,7 @@ public class ListOfParkingSpaces implements Writable {
                 searchResult.addParkingSpace(p);
             }
         }
+        EventLog.getInstance().logEvent(new Event("list of parking spaces filtered to available parking spaces"));
         return searchResult;
     }
 

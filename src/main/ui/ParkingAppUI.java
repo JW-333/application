@@ -1,9 +1,10 @@
 package ui;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
+import model.Event;
+import model.EventLog;
 import model.ListOfParkingSpaces;
 import model.ParkingSpace;
 
@@ -18,6 +19,7 @@ import persistence.JsonWriter;
 
 
 import javax.swing.*;
+
 
 
 /**
@@ -70,6 +72,16 @@ class ParkingAppUI implements ActionListener {
         panel.add(label);
         desktop.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         desktop.setSize(WIDTH, HEIGHT);
+        desktop.addWindowListener(new WindowAdapter()
+        {
+            @Override
+            public void windowClosing(WindowEvent e)
+            {
+                for (Event event: EventLog.getInstance()) {
+                    System.out.println(event.getDescription());
+                }
+            }
+        });
         centreOnScreen();
         desktop.setVisible(true);
     }
@@ -463,6 +475,5 @@ class ParkingAppUI implements ActionListener {
             panel.validate();
             panel.repaint();
         }
-
     }
 }
