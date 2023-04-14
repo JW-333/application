@@ -37,3 +37,34 @@ Citation: persistence package uses code from https://github.students.cs.ubc.ca/C
 - You can locate my visual component in the main page, which is an image of two cars.
 - You can save the state of my application by clicking save.
 - You can reload the state of my application by clicking load.
+
+# Phase 4: Task 2
+
+ parking space added to list of parking space
+ parking space added to list of parking space
+ parking space added to list of parking space
+ parking space added to list of parking space
+ parking space added to list of parking space
+ parking space added to list of parking space
+ parking space added to list of parking space
+ parking space removed from list of parking space
+ location of parking space changed
+ charge of parking space changed
+ availability of parking space changed
+ availability of parking space changed
+
+("parking space added to list of parking space" appears 6 times first due to the initialization of the list in ParkingAppUI)
+# Phase 4: Task 3
+
+- There are some code clones in ParkingAppUI, especially the ones for action listener. A possible
+refactoring is to simplify them by replacing them with methods.
+- Some components of GUI can be moved into new classes to improve SRP.
+- If I had more to add more graphics to the GUI, I would make an abstract class that contain the repetitive
+methods in the classes for the graphics to simplify.
+- Reflecting on the UML diagram, it is possible to break up ParkingAppUI into multiple classes for different functionality.
+For example, a new class can be added for the load/save function. The new class contains JsonReader and JsonWriter and
+has an association arrow from ParkingAppUI.
+- The parking space list initialized in ParkingAppUI can be initialized in a new class and ParkingAppUI will contain that class
+with multiplicity 1.
+
+

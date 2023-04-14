@@ -43,6 +43,7 @@ class ParkingAppUI implements ActionListener {
     private ParkingSpace parkingSpace4;
     private ParkingSpace parkingSpace5;
     private ParkingSpace parkingSpace6;
+    private Car car;
     private ListOfParkingSpaces listOfParkingSpaces;
     private static final String JSON_STORE = "./data/listofparkingspaces.json";
     private JsonWriter jsonWriter;
@@ -65,7 +66,8 @@ class ParkingAppUI implements ActionListener {
         desktop.setTitle("Parking App");
         desktop.setSize(WIDTH, HEIGHT);
         addButtonPanel();
-        panel.add(new Car(), BorderLayout.PAGE_END);
+        car = new Car();
+        panel.add(car, BorderLayout.PAGE_END);
         desktop.pack();
         desktop.add(panel, BorderLayout.CENTER);
         addListener();

@@ -10,6 +10,11 @@
         "availability": true
     },
     {
+        "charge": 2,
+        "location": "6525 Oak St, Vancouver, BC V6P 3Z3",
+        "availability": true
+    },
+    {
         "charge": 5,
         "location": "5251 Oak St V6M 4H1",
         "availability": true
