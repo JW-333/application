@@ -40,18 +40,18 @@ Citation: persistence package uses code from https://github.students.cs.ubc.ca/C
 
 # Phase 4: Task 2
 
- -parking space added to list of parking space
- -parking space added to list of parking space
- -parking space added to list of parking space
- -parking space added to list of parking space
- -parking space added to list of parking space
- -parking space added to list of parking space
- -parking space added to list of parking space
- -parking space removed from list of parking space
- -location of parking space changed
- -charge of parking space changed
- availability of parking space changed
- availability of parking space changed
+ - parking space added to list of parking space
+ - parking space added to list of parking space
+ - parking space added to list of parking space
+ - parking space added to list of parking space
+ - parking space added to list of parking space
+ - parking space added to list of parking space
+ - parking space added to list of parking space
+ - parking space removed from list of parking space
+ - location of parking space changed
+ - charge of parking space changed
+ - availability of parking space changed
+ - availability of parking space changed
 
 ("parking space added to list of parking space" appears 6 times first due to the initialization of the list in ParkingAppUI)
 # Phase 4: Task 3
